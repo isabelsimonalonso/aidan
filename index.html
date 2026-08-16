@@ -419,6 +419,8 @@
       .site-name { font-size: 1.3rem; }
       .socials { gap: 1rem; }
       .social-link { width: 48px; height: 48px; }
+      .language-selector { display: none !important; }
+      .footer-lang-selector { display: flex !important; gap: 0.5rem; justify-content: center; }
     }
   </style>
 </head>
@@ -544,6 +546,30 @@
   </main>
 
   <footer>
+    <div style="margin-bottom: 1rem; display: none;" class="footer-lang-selector">
+      <button class="lang-btn active" data-lang="es" title="Español">
+        <svg viewBox="0 0 3 2" style="width: 24px; height: 16px;">
+          <rect width="3" height="2" fill="#c60b1e"/>
+          <rect width="3" height="1" y="0.5" fill="#ffc400"/>
+        </svg>
+      </button>
+      <button class="lang-btn" data-lang="en" title="English">
+        <svg viewBox="0 0 7.5 4" style="width: 24px; height: 16px;">
+          <rect width="7.5" height="4" fill="#b22234"/>
+          <rect width="7.5" height="3.077" fill="white" y="0.462"/>
+          <rect width="7.5" height="2.154" fill="#b22234" y="0.923"/>
+          <rect width="7.5" height="1.231" fill="white" y="1.385"/>
+          <rect width="7.5" height="0.462" fill="#b22234" y="1.846"/>
+          <rect width="2.9" height="2.308" fill="#3c3b6b"/>
+          <circle cx="0.5" cy="0.3" r="0.08" fill="white"/>
+          <circle cx="1.2" cy="0.3" r="0.08" fill="white"/>
+          <circle cx="1.9" cy="0.3" r="0.08" fill="white"/>
+          <circle cx="0.5" cy="1" r="0.08" fill="white"/>
+          <circle cx="1.2" cy="1" r="0.08" fill="white"/>
+          <circle cx="1.9" cy="1" r="0.08" fill="white"/>
+        </svg>
+      </button>
+    </div>
     &copy; <span id="year"></span> Aidan Antares. <span data-i18n="footer.rights">Todos los derechos reservados</span>.
   </footer>
 
