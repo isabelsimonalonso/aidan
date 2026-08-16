@@ -1,0 +1,12 @@
+name: web-test
+description: Inicia servidor local y verifica que la página funciona correctamente
+author: Claude Code
+
+instructions: |
+  1. Inicia un servidor local (python3 -m http.server 8000 si no está corriendo)
+  2. Verifica que la página carga sin errores de consola
+  3. Prueba los botones de idioma (ES/US) y verifica que traducen
+  4. Verifica que el favicon aparece en la pestaña
+  5. Abre DevTools y reporta cualquier error en consola
+  6. Verifica responsive design (abre DevTools en modo móvil)
+  7. Comprueba que las banderas aparecen en footer en móvil y en header en desktop

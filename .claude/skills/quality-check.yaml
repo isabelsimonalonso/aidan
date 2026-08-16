@@ -1,0 +1,35 @@
+name: quality-check
+description: Verifica calidad general del código (limpieza, mejores prácticas)
+author: Claude Code
+
+instructions: |
+  Realiza un control de calidad exhaustivo:
+
+  ## HTML
+  - Sintaxis HTML válida
+  - Estructura semántica correcta
+  - Atributos necesarios (lang, charset, viewport)
+  - IDs y clases nombradas claramente
+  - Sin código muerto o comentado
+
+  ## CSS
+  - Selectores eficientes
+  - Sin estilos duplicados
+  - Variables CSS bien usadas
+  - Mobile-first responsive
+  - Sin vendor prefixes innecesarios
+
+  ## JavaScript
+  - Funciones pequeñas y enfocadas
+  - Variables bien nombradas
+  - Sin código muerto
+  - Sin console.log en producción
+  - Uso correcto de const/let (no var)
+
+  ## General
+  - Sin console errors/warnings
+  - Indentación consistente
+  - Archivos bien organizados
+  - Sugiere simplificaciones
+
+  Reporta problemas por severidad: crítico, importante, mejorable.

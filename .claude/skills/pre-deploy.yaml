@@ -1,0 +1,39 @@
+name: pre-deploy
+description: Checklist final antes de hacer push a GitHub
+author: Claude Code
+
+instructions: |
+  Verifica todo antes de deployar:
+
+  ## Funcionalidad
+  - ✓ Página carga sin errores
+  - ✓ Todas las características funcionan
+  - ✓ Links funcionan correctamente
+  - ✓ Responsive en móvil
+  - ✓ Botones de idioma funcionan
+  - ✓ Favicon visible
+
+  ## Código
+  - ✓ Prettier formateó el código
+  - ✓ ESLint sin errores
+  - ✓ Ningún console.log, debugger, etc
+  - ✓ Variables y funciones bien nombradas
+  - ✓ Sin código duplicado
+
+  ## Documentación
+  - ✓ README actualizado
+  - ✓ CLAUDE.md actualizado (si existe)
+  - ✓ Comentarios importantes presentes
+  - ✓ Commit message claro
+
+  ## SEO & Performance
+  - ✓ Meta tags correctos
+  - ✓ Imágenes optimizadas
+  - ✓ CSS/JS minificados si es posible
+  - ✓ Lighthouse score aceptable
+
+  ## Git
+  - ✓ Commits organizados
+  - ✓ Rama correcta (main para producción)
+  - ✓ Sin archivos sensibles en staging
+  - ✓ Push exitoso a GitHub

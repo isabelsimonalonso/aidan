@@ -1,0 +1,26 @@
+name: update-docs
+description: Actualiza documentación del proyecto (README, CLAUDE.md)
+author: Claude Code
+
+instructions: |
+  Mantén actualizada la documentación del proyecto:
+
+  ## README.md
+  - Descripción clara del proyecto
+  - Instrucciones de instalación
+  - Cómo ejecutar en local
+  - Características principales
+  - Link a la versión en vivo
+
+  ## CLAUDE.md (si existe)
+  - Información importante para futuros cambios
+  - Decisiones de arquitectura
+  - Convenciones del proyecto
+  - Links a recursos externos
+  - Stack tecnológico
+
+  ## Checklist antes de push
+  - Docs actualizados
+  - README visible y correcto
+  - CLAUDE.md (si existe) actualizado
+  - Versionado coherente

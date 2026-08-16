@@ -1,0 +1,26 @@
+name: web-audit
+description: Auditar página web (SEO, accesibilidad, performance)
+author: Claude Code
+
+instructions: |
+  Realiza una auditoría completa de la página:
+
+  ## SEO
+  - Verifica que existe <title> único
+  - Verifica meta description
+  - Verifica que todas las imágenes tienen alt text
+  - Verifica que los headings estén bien estructurados (h1, h2, h3)
+  - Verifica que no hay enlaces rotos
+
+  ## Accesibilidad (a11y)
+  - Verifica contraste de colores (WCAG AA mínimo)
+  - Verifica que los botones tienen aria-label o texto
+  - Verifica que la página es navegable sin ratón
+  - Verifica estructura semántica HTML
+
+  ## Performance
+  - Verifica que no hay JavaScript sin usar
+  - Verifica que CSS es mínimo
+  - Sugiere optimizaciones de imágenes
+
+  Reporta hallazgos por categoría.
