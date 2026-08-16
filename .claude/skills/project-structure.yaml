@@ -1,0 +1,47 @@
+name: project-structure
+description: Mejora la estructura y organización del proyecto web
+author: Claude Code
+
+instructions: |
+  Revisa y mejora la estructura del proyecto:
+
+  ## Análisis actual:
+  1. Mapea archivos y carpetas existentes
+  2. Identifica patrones y convenciones
+  3. Detecta duplicación o desorganización
+
+  ## Recomendaciones:
+
+  ### Archivo único (actual)
+  Si index.html es un archivo monolítico:
+  - Mantener así si es simple (<1000 líneas)
+  - Considerar separar si crece más
+  - Documentar secciones claramente
+
+  ### Modularización (si es necesario)
+  - Separar CSS en archivos por tema
+  - Crear archivos JS modulares
+  - Usar variables/templates si es posible
+
+  ### Documentación
+  - Estructura clara explicada
+  - Guía de convenciones
+  - Cómo agregar nuevas secciones
+  - Dependencias documentadas
+
+  ### Assets
+  - Carpeta para imágenes optimizadas
+  - Carpeta para fuentes (si usa custom)
+  - Versionado de assets (si aplica)
+
+  ### Configuración
+  - .claude/ para herramientas
+  - package.json con scripts útiles
+  - .gitignore actualizado
+  - Variables de entorno si necesita
+
+  ## Proporciona:
+  - Estructura recomendada
+  - Pasos para refactorizar (sin romper)
+  - Checklist de organización
+  - Ejemplos de buenos nombres

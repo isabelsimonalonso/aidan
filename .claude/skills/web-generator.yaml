@@ -1,0 +1,47 @@
+name: web-generator
+description: Genera componentes web (HTML, CSS, JS) para nuevas secciones
+author: Claude Code
+
+instructions: |
+  Cuando el usuario describe una nueva sección o componente web:
+
+  ## Proceso:
+  1. **Entiende los requisitos:**
+     - Qué tipo de componente (sección, card, galería, formulario, etc)
+     - Contenido y datos que debe mostrar
+     - Comportamiento interactivo (si aplica)
+     - Restricciones de diseño (responsive, accesibilidad, etc)
+
+  2. **Genera código modular:**
+     - HTML semántico y bien estructurado
+     - CSS responsive (mobile-first)
+     - JavaScript limpio sin dependencias externas
+     - Usa las variables CSS existentes del proyecto
+     - Sigue las convenciones del proyecto
+
+  3. **Incluye:**
+     - Soporte bilingüe (español/inglés) con data-i18n
+     - Atributos de accesibilidad (aria-labels, alt text, etc)
+     - Animaciones suaves con CSS transitions
+     - Hover states interactivos
+
+  4. **Proporciona:**
+     - Código completo listo para copiar
+     - Instrucciones de integración
+     - Puntos donde personalizar
+     - Ejemplos de uso
+
+  5. **Verifica:**
+     - Valida que sea compatible con el tema actual
+     - Confirma que mantiene la consistencia de diseño
+     - Asegura que es responsive en móvil
+
+  ## Ejemplo de salida:
+  ```html
+  <section class="nueva-seccion">
+    <h2 class="section-title" data-i18n="sections.nuevo">Nueva Sección</h2>
+    <!-- contenido con estructura semántica -->
+  </section>
+  ```
+
+  Siempre pregunta si necesita ajustes antes de integrar.

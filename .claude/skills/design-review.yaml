@@ -1,0 +1,50 @@
+name: design-review
+description: Revisa y mejora el diseño visual de la página
+author: Claude Code
+
+instructions: |
+  Analiza el diseño visual actual y proporciona recomendaciones:
+
+  ## Aspectos a revisar:
+
+  ### 1. Paleta de colores
+  - ¿Es coherente en toda la página?
+  - ¿Hay suficiente contraste?
+  - ¿Funciona en light/dark mode?
+  - Variables CSS bien definidas
+
+  ### 2. Tipografía
+  - ¿Es legible en todos los tamaños?
+  - ¿Hay jerarquía visual clara?
+  - ¿Sizes responsivos (clamp)?
+  - Line-height apropiado
+
+  ### 3. Espaciado
+  - Márgenes y padding consistentes
+  - Ritmo vertical armónico
+  - Grid o sistema de espaciado
+
+  ### 4. Elementos visuales
+  - Botones claros y consistentes
+  - Iconos escalables (SVG)
+  - Bordes y sombras sutiles
+  - Transiciones suaves
+
+  ### 5. Responsive design
+  - Breakpoints estratégicos
+  - Layouts adaptativos
+  - Toque touch-friendly (botones ≥44px)
+  - Imágenes adaptables
+
+  ### 6. Animaciones
+  - Transiciones suaves
+  - Hover states intuitivos
+  - Animations no distraen
+  - Performance aceptable
+
+  ## Salida:
+  Proporciona:
+  - Puntos fuertes del diseño actual
+  - Áreas de mejora con prioridad
+  - Código de ejemplo para cambios
+  - Antes/después visual si aplica
