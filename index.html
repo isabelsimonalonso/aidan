@@ -96,17 +96,17 @@
     }
 
     .lang-btn {
-      width: 20px;
-      height: 20px;
       border: none;
       background: transparent;
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       transition: all 0.3s ease;
-      padding: 0;
-      opacity: 0.7;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text);
+      padding: 0.5rem 0.75rem;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid transparent;
+      opacity: 1;
     }
 
     .lang-btn:hover {
@@ -115,6 +115,32 @@
 
     .lang-btn.active {
       opacity: 1;
+      border-bottom-color: var(--accent);
+    }
+
+    .footer-text-btn {
+      width: auto !important;
+      height: auto !important;
+      padding: 0.5rem 0.75rem !important;
+      font-size: 0.9rem !important;
+      font-weight: 500 !important;
+      letter-spacing: 0.05em;
+      border: none !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      border-bottom: 2px solid transparent !important;
+      color: var(--text) !important;
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+
+    .footer-text-btn:hover {
+      opacity: 1;
+    }
+
+    .footer-text-btn.active {
+      opacity: 1;
+      border-bottom-color: var(--accent) !important;
     }
 
     /* ============ MAIN ============ */
@@ -160,6 +186,7 @@
     .hero-cta {
       display: inline-block;
       padding: 0.75rem 2rem;
+      margin-top: 1.5rem;
       border: 2px solid var(--accent);
       color: var(--accent);
       text-decoration: none;
@@ -429,28 +456,9 @@
     <h1 class="site-name">AIDAN ANTARES</h1>
     <div style="display: flex; gap: 2rem; align-items: center;">
       <div class="language-selector">
-        <button class="lang-btn active" data-lang="es" title="Español">
-          <svg viewBox="0 0 3 2" style="width: 24px; height: 16px;">
-            <rect width="3" height="2" fill="#c60b1e"/>
-            <rect width="3" height="1" y="0.5" fill="#ffc400"/>
-          </svg>
-        </button>
-        <button class="lang-btn" data-lang="en" title="English">
-          <svg viewBox="0 0 7.5 4" style="width: 24px; height: 16px;">
-            <rect width="7.5" height="4" fill="#b22234"/>
-            <rect width="7.5" height="3.077" fill="white" y="0.462"/>
-            <rect width="7.5" height="2.154" fill="#b22234" y="0.923"/>
-            <rect width="7.5" height="1.231" fill="white" y="1.385"/>
-            <rect width="7.5" height="0.462" fill="#b22234" y="1.846"/>
-            <rect width="2.9" height="2.308" fill="#3c3b6b"/>
-            <circle cx="0.5" cy="0.3" r="0.08" fill="white"/>
-            <circle cx="1.2" cy="0.3" r="0.08" fill="white"/>
-            <circle cx="1.9" cy="0.3" r="0.08" fill="white"/>
-            <circle cx="0.5" cy="1" r="0.08" fill="white"/>
-            <circle cx="1.2" cy="1" r="0.08" fill="white"/>
-            <circle cx="1.9" cy="1" r="0.08" fill="white"/>
-          </svg>
-        </button>
+        <button class="lang-btn active" data-lang="es" title="Español">ES</button>
+        <span style="opacity: 0.3; margin: 0 0.25rem;">|</span>
+        <button class="lang-btn" data-lang="en" title="English">EN</button>
       </div>
       <span class="header-tag">Pianista &amp; Compositor</span>
     </div>
@@ -467,7 +475,7 @@
 
       <div class="hero-frame">
         <div class="hero-photo">
-          <span class="photo-placeholder">Aquí foto portada<br />Aidan tocando el piano</span>
+          <span class="photo-placeholder">FOTO PORTADA AQUI</span>
           <img src="./fotografias/portada.png" alt="Aidan Antares — Pianista & Compositor" />
         </div>
       </div>
@@ -547,28 +555,9 @@
 
   <footer>
     <div style="margin-bottom: 1rem; display: none;" class="footer-lang-selector">
-      <button class="lang-btn active" data-lang="es" title="Español">
-        <svg viewBox="0 0 3 2" style="width: 24px; height: 16px;">
-          <rect width="3" height="2" fill="#c60b1e"/>
-          <rect width="3" height="1" y="0.5" fill="#ffc400"/>
-        </svg>
-      </button>
-      <button class="lang-btn" data-lang="en" title="English">
-        <svg viewBox="0 0 7.5 4" style="width: 24px; height: 16px;">
-          <rect width="7.5" height="4" fill="#b22234"/>
-          <rect width="7.5" height="3.077" fill="white" y="0.462"/>
-          <rect width="7.5" height="2.154" fill="#b22234" y="0.923"/>
-          <rect width="7.5" height="1.231" fill="white" y="1.385"/>
-          <rect width="7.5" height="0.462" fill="#b22234" y="1.846"/>
-          <rect width="2.9" height="2.308" fill="#3c3b6b"/>
-          <circle cx="0.5" cy="0.3" r="0.08" fill="white"/>
-          <circle cx="1.2" cy="0.3" r="0.08" fill="white"/>
-          <circle cx="1.9" cy="0.3" r="0.08" fill="white"/>
-          <circle cx="0.5" cy="1" r="0.08" fill="white"/>
-          <circle cx="1.2" cy="1" r="0.08" fill="white"/>
-          <circle cx="1.9" cy="1" r="0.08" fill="white"/>
-        </svg>
-      </button>
+      <button class="lang-btn footer-text-btn active" data-lang="es" title="Español">ES</button>
+      <span style="opacity: 0.3; margin: 0 0.25rem;">|</span>
+      <button class="lang-btn footer-text-btn" data-lang="en" title="English">EN</button>
     </div>
     &copy; <span id="year"></span> Aidan Antares. <span data-i18n="footer.rights">Todos los derechos reservados</span>.
   </footer>
