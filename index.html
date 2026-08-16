@@ -10,6 +10,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet" />
 
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'><rect x='8' y='2' width='8' height='10' rx='1' fill='white'/><rect x='6' y='12' width='12' height='10' rx='1' fill='white'/></svg>" />
+
   <style>
     :root {
       --dark: #0f0f0f;
@@ -85,6 +87,34 @@
       color: var(--muted);
       font-weight: 600;
       position: relative;
+    }
+
+    .language-selector {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .lang-btn {
+      width: 20px;
+      height: 20px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      padding: 0;
+      opacity: 0.7;
+    }
+
+    .lang-btn:hover {
+      opacity: 1;
+    }
+
+    .lang-btn.active {
+      opacity: 1;
     }
 
     /* ============ MAIN ============ */
@@ -395,45 +425,71 @@
 <body>
   <header class="site-header">
     <h1 class="site-name">AIDAN ANTARES</h1>
-    <span class="header-tag">Pianista &amp; Compositor</span>
+    <div style="display: flex; gap: 2rem; align-items: center;">
+      <div class="language-selector">
+        <button class="lang-btn active" data-lang="es" title="Español">
+          <svg viewBox="0 0 3 2" style="width: 24px; height: 16px;">
+            <rect width="3" height="2" fill="#c60b1e"/>
+            <rect width="3" height="1" y="0.5" fill="#ffc400"/>
+          </svg>
+        </button>
+        <button class="lang-btn" data-lang="en" title="English">
+          <svg viewBox="0 0 7.5 4" style="width: 24px; height: 16px;">
+            <rect width="7.5" height="4" fill="#b22234"/>
+            <rect width="7.5" height="3.077" fill="white" y="0.462"/>
+            <rect width="7.5" height="2.154" fill="#b22234" y="0.923"/>
+            <rect width="7.5" height="1.231" fill="white" y="1.385"/>
+            <rect width="7.5" height="0.462" fill="#b22234" y="1.846"/>
+            <rect width="2.9" height="2.308" fill="#3c3b6b"/>
+            <circle cx="0.5" cy="0.3" r="0.08" fill="white"/>
+            <circle cx="1.2" cy="0.3" r="0.08" fill="white"/>
+            <circle cx="1.9" cy="0.3" r="0.08" fill="white"/>
+            <circle cx="0.5" cy="1" r="0.08" fill="white"/>
+            <circle cx="1.2" cy="1" r="0.08" fill="white"/>
+            <circle cx="1.9" cy="1" r="0.08" fill="white"/>
+          </svg>
+        </button>
+      </div>
+      <span class="header-tag">Pianista &amp; Compositor</span>
+    </div>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
-        <h2 class="hero-subtitle">Bienvenido a mi universo</h2>
+        <h2 class="hero-subtitle" data-i18n="hero.subtitle">Bienvenido a mi universo</h2>
         <h1 class="hero-title">Aidan Antares</h1>
-        <a href="https://open.spotify.com" target="_blank" rel="noopener" class="hero-cta">Escúchame</a>
+        <a href="https://open.spotify.com" target="_blank" rel="noopener" class="hero-cta" data-i18n="hero.cta">Escúchame</a>
       </div>
 
       <div class="hero-frame">
         <div class="hero-photo">
           <span class="photo-placeholder">Aquí foto portada<br />Aidan tocando el piano</span>
-          <img src="../fotografias/portada.png" alt="Aidan Antares — Pianista & Compositor" />
+          <img src="./fotografias/portada.png" alt="Aidan Antares — Pianista & Compositor" />
         </div>
       </div>
     </section>
 
     <!-- BIOGRAFÍA -->
     <section class="bio-section">
-      <h2 class="section-title">Biografía</h2>
-      <p class="bio">
+      <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
+      <p class="bio" data-i18n="content.construction">
         En construcción
       </p>
     </section>
 
     <!-- PREMIOS -->
     <section class="awards-section">
-      <h2 class="section-title">Premios</h2>
-      <p class="bio">
+      <h2 class="section-title" data-i18n="sections.awards">Premios</h2>
+      <p class="bio" data-i18n="content.construction">
         En construcción
       </p>
     </section>
 
     <!-- ÚLTIMAS ACTUACIONES -->
     <section class="videos-section">
-      <h2 class="section-title">Últimas actuaciones</h2>
+      <h2 class="section-title" data-i18n="sections.performances">Últimas actuaciones</h2>
       <div class="videos">
         <div class="video-embed">
           <iframe src="https://www.youtube.com/embed/d-ZoPMPleXE" title="Vídeo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
@@ -488,10 +544,58 @@
   </main>
 
   <footer>
-    &copy; <span id="year"></span> Aidan Antares
+    &copy; <span id="year"></span> Aidan Antares. <span data-i18n="footer.rights">Todos los derechos reservados</span>.
   </footer>
 
   <script>
+    const translations = {
+      es: {
+        "hero.subtitle": "Bienvenido a mi universo",
+        "hero.cta": "Escúchame",
+        "sections.bio": "Biografía",
+        "sections.awards": "Premios",
+        "sections.performances": "Últimas actuaciones",
+        "content.construction": "En construcción",
+        "footer.rights": "Todos los derechos reservados"
+      },
+      en: {
+        "hero.subtitle": "Welcome to my universe",
+        "hero.cta": "Listen to me",
+        "sections.bio": "Biography",
+        "sections.awards": "Awards",
+        "sections.performances": "Latest Performances",
+        "content.construction": "Under construction",
+        "footer.rights": "All rights reserved"
+      }
+    };
+
+    function setLanguage(lang) {
+      document.documentElement.lang = lang;
+      localStorage.setItem("language", lang);
+
+      document.querySelectorAll("[data-i18n]").forEach(el => {
+        const key = el.getAttribute("data-i18n");
+        if (translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.getAttribute("data-lang") === lang) {
+          btn.classList.add("active");
+        }
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        setLanguage(btn.getAttribute("data-lang"));
+      });
+    });
+
+    const savedLanguage = localStorage.getItem("language") || "es";
+    setLanguage(savedLanguage);
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
 </body>
