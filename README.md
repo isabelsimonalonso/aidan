@@ -4,9 +4,9 @@ Web oficial de **Aidan Antares**, pianista y compositor.
 
 ## 🌐 Sitio en vivo
 
-**https://isasimon.gitlab.io/aidanantares/**
+**https://isabelsimonalonso.github.io/aidan/**
 
-Publicada automáticamente en GitLab Pages desde `main`.
+Publicada automáticamente en GitHub Pages desde `main`.
 
 ## 📋 Contenido actual
 
@@ -21,15 +21,15 @@ Publicada automáticamente en GitLab Pages desde `main`.
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://gitlab.com/isasimon/aidanantares.git
-cd aidanantares
+git clone https://github.com/isabelsimonalonso/aidan.git
+cd aidan
 ```
 
 ### 2. Hacer cambios
-Edita los archivos en `public/index.html`:
+Edita el archivo `index.html`:
 
 - **Biografía:** Reemplaza el texto "En construcción" en la sección `<!-- BIOGRAFÍA -->`
-- **Videos:** Cambia `VIDEO_ID_2` y `VIDEO_ID_3` por IDs reales de YouTube
+- **Vídeos:** Cambia `VIDEO_ID_2` y `VIDEO_ID_3` por IDs reales de YouTube
 - **Email:** Reemplaza `ejemplo@correo.com` en la sección `<!-- ICONOS -->`
 - **Redes:** Actualiza los enlaces de Instagram, TikTok, Spotify, YouTube
 - **Foto:** Guarda la foto en `fotografias/portada.png` y descomenta la línea `<img>` en la sección `<!-- HERO -->`
@@ -54,14 +54,13 @@ git push
 ## 📁 Estructura
 
 ```
-aidanantares/
-├── public/
-│   └── index.html        ← Página principal
-├── fotografias/
-│   └── portada.png       ← Foto (pendiente)
-├── .gitlab-ci.yml        ← Configuración de CI/CD
+aidan/
+├── index.html            ← Página principal
+├── README.md             ← Este archivo
 ├── cspell.json          ← Configuración de ortografía
-└── README.md            ← Este archivo
+├── fotografias/
+│   └── portada.png      ← Foto (pendiente)
+└── .git/                ← Historial de versiones
 ```
 
 ## 🚀 Tecnología
@@ -70,7 +69,7 @@ aidanantares/
 - **CSS3** — Estilos modernos y responsive
 - **JavaScript** — Mínimo, solo para funcionalidad básica
 - **Google Fonts** — Tipografía elegante
-- **GitLab Pages** — Hosting automático
+- **GitHub Pages** — Hosting automático
 
 ## ✨ Características futuras
 
