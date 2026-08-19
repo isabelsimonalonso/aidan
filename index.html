@@ -14,14 +14,13 @@
 
   <style>
     :root {
-      --dark: #0f0f0f;
-      --darker: #0a0a0a;
+      --bg: #000000;
       --text: #ffffff;
-      --muted: #9a9a9a;
-      --accent: #d4d4d4;
-      --accent2: #b0b0b0;
-      --accent3: #808080;
-      --border: rgba(255, 255, 255, 0.1);
+      --muted: #888888;
+      --accent: #d4a574;
+      --accent-light: #e8c4a0;
+      --border: rgba(212, 165, 116, 0.15);
+      --border-light: rgba(212, 165, 116, 0.25);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -29,11 +28,12 @@
 
     body {
       font-family: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #000000;
+      background: var(--bg);
       color: var(--text);
       line-height: 1.6;
       font-weight: 400;
       -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -49,13 +49,13 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at 20% 50%, rgba(212, 212, 212, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 80%, rgba(176, 176, 176, 0.03) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(212, 165, 116, 0.04) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(212, 165, 116, 0.02) 0%, transparent 50%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ============ CABECERA ============ */
+    /* ============ HEADER ============ */
     .site-header {
       position: fixed;
       top: 0;
@@ -63,7 +63,7 @@
       right: 0;
       z-index: 100;
       padding: 1.5rem 2rem;
-      background: rgba(10, 10, 10, 0.85);
+      background: rgba(0, 0, 0, 0.9);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
@@ -75,23 +75,26 @@
     .site-name {
       font-family: "Playfair Display", Georgia, serif;
       font-weight: 800;
-      font-size: 1.6rem;
+      font-size: clamp(1.3rem, 5vw, 1.6rem);
       letter-spacing: -0.02em;
       color: var(--text);
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
 
     .header-tag {
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--accent);
       font-weight: 600;
-      position: relative;
     }
 
     .language-selector {
       display: flex;
-      gap: 0.5rem;
+      gap: 1rem;
       align-items: center;
     }
 
@@ -102,52 +105,28 @@
       transition: all 0.3s ease;
       font-size: 0.85rem;
       font-weight: 500;
-      color: var(--text);
-      padding: 0.5rem 0.75rem;
-      letter-spacing: 0.05em;
+      color: var(--muted);
+      padding: 0.5rem 0;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       border-bottom: 2px solid transparent;
-      opacity: 1;
+      position: relative;
     }
 
     .lang-btn:hover {
-      opacity: 1;
+      color: var(--accent);
     }
 
     .lang-btn.active {
-      opacity: 1;
+      color: var(--accent);
       border-bottom-color: var(--accent);
-    }
-
-    .footer-text-btn {
-      width: auto !important;
-      height: auto !important;
-      padding: 0.5rem 0.75rem !important;
-      font-size: 0.9rem !important;
-      font-weight: 500 !important;
-      letter-spacing: 0.05em;
-      border: none !important;
-      background: transparent !important;
-      border-radius: 0 !important;
-      border-bottom: 2px solid transparent !important;
-      color: var(--text) !important;
-      opacity: 1;
-      transition: all 0.3s ease;
-    }
-
-    .footer-text-btn:hover {
-      opacity: 1;
-    }
-
-    .footer-text-btn.active {
-      opacity: 1;
-      border-bottom-color: var(--accent) !important;
     }
 
     /* ============ MAIN ============ */
     main {
       flex: 1;
       width: 100%;
-      max-width: 1100px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 8rem 2rem 6rem;
       position: relative;
@@ -156,7 +135,7 @@
 
     /* ============ HERO ============ */
     .hero {
-      margin-bottom: 8rem;
+      margin-bottom: 10rem;
       text-align: center;
     }
 
@@ -164,35 +143,35 @@
       margin-bottom: 4rem;
     }
 
-    .hero-title {
-      font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(2.5rem, 8vw, 5rem);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 1.1;
-      margin-bottom: 1rem;
-      color: var(--text);
-    }
-
     .hero-subtitle {
-      font-size: 1.1rem;
-      color: var(--muted);
-      letter-spacing: 0.05em;
+      font-size: 0.95rem;
+      color: var(--accent);
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       font-weight: 600;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(3rem, 10vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-bottom: 1.5rem;
+      color: var(--text);
     }
 
     .hero-cta {
       display: inline-block;
-      padding: 0.75rem 2rem;
-      margin-top: 1.5rem;
+      padding: 1rem 2.5rem;
+      margin-top: 2rem;
       border: 2px solid var(--accent);
       color: var(--accent);
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       transition: all 0.3s ease;
       position: relative;
@@ -212,7 +191,7 @@
     }
 
     .hero-cta:hover {
-      color: var(--darker);
+      color: var(--bg);
     }
 
     .hero-cta:hover::before {
@@ -228,48 +207,32 @@
       overflow: hidden;
       border: none;
       background: transparent;
-      transition: all 0.3s ease;
-      box-shadow: 0 0 40px rgba(255, 255, 255, 0.08), 0 10px 30px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 0 40px rgba(212, 165, 116, 0.1), 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
     .hero-frame:hover {
-      border-color: transparent;
-      box-shadow: 0 0 60px rgba(255, 255, 255, 0.12), 0 15px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .hero-photo {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: transparent;
-    }
-
-    .photo-placeholder {
-      font-size: 0.95rem;
-      color: var(--muted);
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      text-align: center;
+      box-shadow: 0 0 60px rgba(212, 165, 116, 0.15), 0 15px 50px rgba(0, 0, 0, 0.5);
     }
 
     .hero-photo img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    /* ============ SECCIONES ============ */
-    section { margin-bottom: 6rem; }
+    /* ============ SECTIONS ============ */
+    section {
+      margin-bottom: 8rem;
+    }
 
     .section-title {
       font-family: "Playfair Display", Georgia, serif;
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
       font-weight: 800;
       letter-spacing: -0.02em;
-      margin-bottom: 2.5rem;
+      margin-bottom: 3rem;
       position: relative;
       text-align: center;
     }
@@ -277,40 +240,40 @@
     .section-title::after {
       content: "";
       position: absolute;
-      bottom: -12px;
+      bottom: -1rem;
       left: 50%;
       transform: translateX(-50%);
-      width: 80px;
+      width: 60px;
       height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--accent2), transparent);
-      opacity: 0.6;
+      background: linear-gradient(90deg, var(--accent), transparent);
+      opacity: 0.8;
     }
 
-    /* ============ BIOGRAFÍA ============ */
-    .bio {
-      font-size: 1.05rem;
+    /* ============ CONTENT ============ */
+    .section-content {
+      max-width: 750px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .content-text {
+      font-size: 1.1rem;
       color: var(--muted);
-      max-width: 700px;
-      line-height: 1.9;
-      margin-top: 1rem;
-      margin-left: auto;
-      margin-right: auto;
+      line-height: 1.85;
+      margin-bottom: 2rem;
     }
 
-    .bio-section .bio {
-      text-align: center;
+    .content-highlight {
+      color: var(--accent);
+      font-weight: 500;
     }
 
-    .awards-section .bio {
-      text-align: center;
-    }
-
-    /* ============ VÍDEOS ============ */
+    /* ============ VIDEOS ============ */
     .videos {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-top: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
     .video-embed {
@@ -320,15 +283,15 @@
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid var(--border);
-      background: rgba(0, 0, 0, 0.5);
-      box-shadow: 0 0 40px rgba(212, 212, 212, 0.1);
+      background: rgba(212, 165, 116, 0.02);
+      box-shadow: 0 0 30px rgba(212, 165, 116, 0.08);
       transition: all 0.3s ease;
     }
 
     .video-embed:hover {
       border-color: var(--accent);
-      box-shadow: 0 0 60px rgba(212, 212, 212, 0.15);
-      transform: translateY(-6px);
+      box-shadow: 0 0 50px rgba(212, 165, 116, 0.15);
+      transform: translateY(-4px);
     }
 
     .video-embed iframe {
@@ -344,30 +307,19 @@
       align-items: center;
       justify-content: center;
       position: relative;
-    }
-
-    .video-placeholder span {
-      font-size: 0.95rem;
       color: var(--muted);
+      font-size: 0.95rem;
       font-weight: 500;
       letter-spacing: 0.05em;
     }
 
-    @media (max-width: 900px) {
-      .videos { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 600px) {
-      .videos { grid-template-columns: 1fr; }
-    }
-
-    /* ============ REDES ============ */
+    /* ============ SOCIALS ============ */
     .socials {
       display: flex;
       gap: 1.5rem;
       flex-wrap: wrap;
       justify-content: center;
-      margin-top: 2rem;
+      margin-top: 3rem;
     }
 
     .social-link {
@@ -378,7 +330,7 @@
       height: 56px;
       border: 2px solid var(--border);
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(212, 165, 116, 0.03);
       color: var(--text);
       transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
       position: relative;
@@ -389,7 +341,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(212, 212, 212, 0.2);
+      background: var(--accent);
       transform: scale(0);
       transition: transform 0.3s ease;
       z-index: -1;
@@ -398,7 +350,8 @@
 
     .social-link:hover {
       border-color: var(--accent);
-      transform: translateY(-8px) scale(1.1);
+      color: var(--bg);
+      transform: translateY(-8px) scale(1.15);
     }
 
     .social-link:hover::before {
@@ -413,45 +366,142 @@
       z-index: 1;
     }
 
-    .social-link:hover svg {
-      filter: invert(1);
-    }
-
-    /* ============ ICONOS ============ */
-    .icons-section {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .all-icons {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-    }
-
     /* ============ FOOTER ============ */
     footer {
       text-align: center;
-      padding: 3rem 2rem;
+      padding: 4rem 2rem;
       color: var(--muted);
       font-size: 0.75rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       border-top: 1px solid var(--border);
       font-weight: 600;
       position: relative;
       z-index: 1;
+      margin-top: auto;
+    }
+
+    .footer-lang-selector {
+      display: none;
+      gap: 1rem;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-text-btn {
+      width: auto !important;
+      padding: 0.5rem 0 !important;
+      font-size: 0.75rem !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.12em !important;
+      border: none !important;
+      background: transparent !important;
+      border-radius: 0 !important;
+      border-bottom: 2px solid transparent !important;
+      color: var(--muted) !important;
+      text-transform: uppercase !important;
+      transition: all 0.3s ease !important;
+      cursor: pointer;
+    }
+
+    .footer-text-btn:hover {
+      color: var(--accent) !important;
+    }
+
+    .footer-text-btn.active {
+      color: var(--accent) !important;
+      border-bottom-color: var(--accent) !important;
     }
 
     /* ============ RESPONSIVE ============ */
     @media (max-width: 768px) {
-      main { padding: 6rem 1.5rem 4rem; }
-      .site-name { font-size: 1.3rem; }
-      .socials { gap: 1rem; }
-      .social-link { width: 48px; height: 48px; }
-      .language-selector { display: none !important; }
-      .footer-lang-selector { display: flex !important; gap: 0.5rem; justify-content: center; }
+      main {
+        padding: 7rem 1.5rem 4rem;
+      }
+
+      .site-header {
+        padding: 1rem 1.5rem;
+      }
+
+      .language-selector {
+        display: none !important;
+      }
+
+      .footer-lang-selector {
+        display: flex !important;
+      }
+
+      .hero {
+        margin-bottom: 6rem;
+      }
+
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+      }
+
+      .section-title {
+        font-size: clamp(1.2rem, 5vw, 1.8rem);
+        margin-bottom: 2rem;
+      }
+
+      .section-title::after {
+        bottom: -0.75rem;
+      }
+
+      .content-text {
+        font-size: 1rem;
+      }
+
+      .socials {
+        gap: 1rem;
+      }
+
+      .social-link {
+        width: 48px;
+        height: 48px;
+      }
+
+      .videos {
+        gap: 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      main {
+        padding: 6rem 1rem 3rem;
+      }
+
+      .site-name {
+        font-size: 1.1rem;
+      }
+
+      .hero-title {
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        margin-bottom: 1rem;
+      }
+
+      .hero-subtitle {
+        font-size: 0.8rem;
+      }
+
+      .hero-cta {
+        padding: 0.75rem 1.75rem;
+        font-size: 0.8rem;
+      }
+
+      .section-title {
+        font-size: clamp(1rem, 4vw, 1.5rem);
+      }
+
+      .content-text {
+        font-size: 0.95rem;
+        line-height: 1.75;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+        font-size: 0.7rem;
+      }
     }
   </style>
 </head>
@@ -461,10 +511,9 @@
     <div style="display: flex; gap: 2rem; align-items: center;">
       <div class="language-selector">
         <button class="lang-btn active" data-lang="es" title="Español">ES</button>
-        <span style="opacity: 0.3; margin: 0 0.25rem;">|</span>
         <button class="lang-btn" data-lang="en" title="English">EN</button>
       </div>
-      <span class="header-tag">Pianista &amp; Compositor</span>
+      <span class="header-tag" data-i18n="header.tag">Pianista & Compositor</span>
     </div>
   </header>
 
@@ -474,50 +523,53 @@
       <div class="hero-content">
         <h2 class="hero-subtitle" data-i18n="hero.subtitle">Bienvenido a mi universo</h2>
         <h1 class="hero-title">Aidan Antares</h1>
-        <a href="https://open.spotify.com" target="_blank" rel="noopener" class="hero-cta" data-i18n="hero.cta">Escúchame</a>
+        <a href="https://open.spotify.com" target="_blank" rel="noopener" class="hero-cta" data-i18n="hero.cta">Escúchame en Spotify</a>
       </div>
 
       <div class="hero-frame">
-        <div class="hero-photo">
-          <img src="./portada.jpg" alt="Aidan Antares — Pianista & Compositor" />
-        </div>
+        <img src="./portada.jpg" alt="Aidan Antares — Pianista & Compositor" class="hero-photo" />
       </div>
     </section>
 
     <!-- BIOGRAFÍA -->
     <section class="bio-section">
       <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
-      <p class="bio" data-i18n="content.construction">
-        En construcción
-      </p>
+      <div class="section-content">
+        <p class="content-text" data-i18n="content.bio">
+          Pianista y compositor con una pasión profunda por la música clásica contemporánea. Mi trabajo explora la intersección entre la tradición pianística y las nuevas formas de expresión musical.
+        </p>
+      </div>
     </section>
 
     <!-- PREMIOS -->
     <section class="awards-section">
-      <h2 class="section-title" data-i18n="sections.awards">Premios</h2>
-      <p class="bio" data-i18n="content.construction">
-        En construcción
-      </p>
+      <h2 class="section-title" data-i18n="sections.awards">Reconocimientos</h2>
+      <div class="section-content">
+        <p class="content-text" data-i18n="content.awards">
+          A lo largo de mi carrera, he tenido el honor de ser reconocido por mi trabajo en festivales de música internacionales y conciertos de renombre.
+        </p>
+      </div>
     </section>
 
     <!-- ÚLTIMAS ACTUACIONES -->
     <section class="videos-section">
-      <h2 class="section-title" data-i18n="sections.performances">Últimas actuaciones</h2>
+      <h2 class="section-title" data-i18n="sections.performances">Últimas Actuaciones</h2>
       <div class="videos">
         <div class="video-embed">
-          <iframe src="https://www.youtube.com/embed/d-ZoPMPleXE" title="Vídeo 1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/d-ZoPMPleXE" title="Actuación reciente" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="video-embed video-placeholder">
-          <span>En construcción</span>
+          <span>Próximamente</span>
         </div>
         <div class="video-embed video-placeholder">
-          <span>En construcción</span>
+          <span>Próximamente</span>
         </div>
       </div>
     </section>
 
-    <!-- ICONOS -->
+    <!-- CONECTAR -->
     <section class="icons-section">
+      <h2 class="section-title" data-i18n="sections.connect">Conecta Conmigo</h2>
       <div class="all-icons">
         <a class="social-link" href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -568,21 +620,27 @@
   <script>
     const translations = {
       es: {
+        "header.tag": "Pianista & Compositor",
         "hero.subtitle": "Bienvenido a mi universo",
-        "hero.cta": "Escúchame",
+        "hero.cta": "Escúchame en Spotify",
         "sections.bio": "Biografía",
-        "sections.awards": "Premios",
-        "sections.performances": "Últimas actuaciones",
-        "content.construction": "En construcción",
+        "sections.awards": "Reconocimientos",
+        "sections.performances": "Últimas Actuaciones",
+        "sections.connect": "Conecta Conmigo",
+        "content.bio": "Pianista y compositor con una pasión profunda por la música clásica contemporánea. Mi trabajo explora la intersección entre la tradición pianística y las nuevas formas de expresión musical.",
+        "content.awards": "A lo largo de mi carrera, he tenido el honor de ser reconocido por mi trabajo en festivales de música internacionales y conciertos de renombre.",
         "footer.rights": "Todos los derechos reservados"
       },
       en: {
+        "header.tag": "Pianist & Composer",
         "hero.subtitle": "Welcome to my universe",
-        "hero.cta": "Listen to me",
+        "hero.cta": "Listen on Spotify",
         "sections.bio": "Biography",
-        "sections.awards": "Awards",
+        "sections.awards": "Recognition",
         "sections.performances": "Latest Performances",
-        "content.construction": "Under construction",
+        "sections.connect": "Connect With Me",
+        "content.bio": "Pianist and composer with a deep passion for contemporary classical music. My work explores the intersection between piano tradition and new forms of musical expression.",
+        "content.awards": "Throughout my career, I have had the honor of being recognized for my work at international music festivals and renowned concerts.",
         "footer.rights": "All rights reserved"
       }
     };
