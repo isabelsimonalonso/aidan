@@ -199,20 +199,27 @@
     }
 
     .hero-frame {
-      width: 90%;
-      max-width: 1000px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 580px;
+      margin: 3rem auto 0;
       aspect-ratio: 1107 / 843;
-      border-radius: 12px;
+      border-radius: 16px;
       overflow: hidden;
-      border: none;
+      border: 1px solid var(--border);
       background: transparent;
       transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      box-shadow: 0 0 40px rgba(212, 165, 116, 0.1), 0 10px 30px rgba(0, 0, 0, 0.4);
+      box-shadow:
+        0 0 50px rgba(212, 165, 116, 0.12),
+        0 20px 60px rgba(0, 0, 0, 0.5),
+        inset 0 0 100px rgba(212, 165, 116, 0.05);
     }
 
     .hero-frame:hover {
-      box-shadow: 0 0 60px rgba(212, 165, 116, 0.15), 0 15px 50px rgba(0, 0, 0, 0.5);
+      box-shadow:
+        0 0 70px rgba(212, 165, 116, 0.18),
+        0 30px 80px rgba(0, 0, 0, 0.6),
+        inset 0 0 100px rgba(212, 165, 116, 0.08);
+      transform: translateY(-8px);
     }
 
     .hero-photo img {
