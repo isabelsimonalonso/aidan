@@ -522,25 +522,16 @@
         font-size: clamp(2rem, 8vw, 3rem);
       }
 
-      .bio-container {
-        display: flex;
-        flex-direction: column;
-      }
-
-      .bio-container .bio-image {
-        order: 1;
+      .bio-image {
+        float: none;
         width: 100%;
         max-width: 350px;
         margin: 0 auto 1.5rem;
+        display: block;
       }
 
-      .bio-container .section-title {
-        order: 2;
-        margin-bottom: 1.5rem;
-      }
-
-      .bio-container .bio-text {
-        order: 3;
+      .bio-text {
+        clear: both;
       }
 
       .section-title {
@@ -634,11 +625,11 @@
 
     <!-- BIOGRAFÍA -->
     <section class="bio-section">
+      <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
       <div class="bio-container">
         <div class="bio-image">
           <img src="./portada.jpg" alt="Aidan Antares" />
         </div>
-        <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
         <div class="bio-text">
           <p class="content-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
