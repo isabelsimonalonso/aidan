@@ -265,13 +265,13 @@
     .bio-container {
       max-width: 900px;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: 240px 1fr;
-      gap: 3rem;
-      align-items: start;
+      text-align: left;
     }
 
     .bio-image {
+      float: right;
+      width: 280px;
+      margin: 0 0 2rem 2rem;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border);
@@ -285,7 +285,13 @@
     }
 
     .bio-text {
-      padding-top: 0.5rem;
+      overflow: hidden;
+    }
+
+    .bio-text::after {
+      content: "";
+      display: table;
+      clear: both;
     }
 
     .content-text {
