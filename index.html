@@ -262,11 +262,38 @@
       text-align: center;
     }
 
+    .bio-container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .bio-image {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 0 40px rgba(212, 165, 116, 0.1), 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .bio-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .bio-text {
+      padding-top: 0.5rem;
+    }
+
     .content-text {
       font-size: 1.1rem;
       color: var(--muted);
       line-height: 1.85;
       margin-bottom: 2rem;
+      text-align: left;
     }
 
     .content-highlight {
@@ -544,10 +571,15 @@
     <!-- BIOGRAFÍA -->
     <section class="bio-section">
       <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
-      <div class="section-content">
-        <p class="content-text" data-i18n="content.bio">
-          Pianista y compositor con una pasión profunda por la música clásica contemporánea. Mi trabajo explora la intersección entre la tradición pianística y las nuevas formas de expresión musical.
-        </p>
+      <div class="bio-container">
+        <div class="bio-image">
+          <img src="./portada.jpg" alt="Aidan Antares" />
+        </div>
+        <div class="bio-text">
+          <p class="content-text">
+            Pianista y compositor nacido en un universo de notas y silencios. Desde los primeros acordes, la música ha sido el lenguaje que mejor expresa lo que las palabras no pueden alcanzar. Mi formación combinada en técnica clásica y composición contemporánea me permite explorar nuevos horizontes sonoros. Cada interpretación es un viaje, cada nota una puerta hacia la conexión profunda con la audiencia. Mi obra refleja la búsqueda constante de belleza, innovación y autenticidad. He tenido el privilegio de compartir escenarios con músicos excepcionales y de recorrer salas que respiran historia.
+          </p>
+        </div>
       </div>
     </section>
 
