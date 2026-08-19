@@ -272,10 +272,23 @@
       float: right;
       width: 280px;
       margin: 0 0 1.5rem 1.5rem;
-      border-radius: 12px;
+      border-radius: 8px;
       overflow: hidden;
-      border: 1px solid var(--border);
-      box-shadow: 0 0 40px rgba(212, 165, 116, 0.1), 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: none;
+      background: transparent;
+      transition: all 0.3s ease;
+      box-shadow:
+        0 0 40px rgba(212, 165, 116, 0.12),
+        0 15px 40px rgba(0, 0, 0, 0.4),
+        inset 0 0 80px rgba(212, 165, 116, 0.04);
+    }
+
+    .bio-image:hover {
+      box-shadow:
+        0 0 60px rgba(212, 165, 116, 0.18),
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 0 80px rgba(212, 165, 116, 0.06);
+      transform: translateY(-4px);
     }
 
     .bio-image img {
