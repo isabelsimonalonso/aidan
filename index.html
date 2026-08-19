@@ -307,6 +307,32 @@
       font-weight: 500;
     }
 
+    .awards-list {
+      list-style: none;
+      padding: 0;
+      margin: 2.5rem auto 0;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .awards-list li {
+      padding-left: 2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .awards-list li::before {
+      content: "◆";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.35rem;
+    }
+
     /* ============ VIDEOS ============ */
     .videos {
       display: grid;
@@ -585,13 +611,18 @@
       </div>
     </section>
 
-    <!-- PREMIOS -->
+    <!-- RECONOCIMIENTOS -->
     <section class="awards-section">
       <h2 class="section-title" data-i18n="sections.awards">Reconocimientos</h2>
       <div class="section-content">
-        <p class="content-text" data-i18n="content.awards">
-          A lo largo de mi carrera, he tenido el honor de ser reconocido por mi trabajo en festivales de música internacionales y conciertos de renombre.
+        <p class="content-text">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
         </p>
+        <ul class="awards-list">
+          <li>Primer Premio Festival Internacional de Música Clásica 2023</li>
+          <li>Reconocimiento como Compositor Emergente del Año</li>
+          <li>Nominación Premios de las Artes Performing 2024</li>
+        </ul>
       </div>
     </section>
 
