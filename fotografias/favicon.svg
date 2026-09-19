@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Piano keys - simple representation -->
+  <defs>
+    <linearGradient id="pianoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#d4a574;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b6f47;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="256" height="256" fill="#000000"/>
+  
+  <!-- Piano body -->
+  <rect x="40" y="80" width="176" height="110" rx="8" fill="url(#pianoGrad)" stroke="#d4a574" stroke-width="2"/>
+  
+  <!-- White keys (simplified) -->
+  <rect x="50" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="68" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="86" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="104" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="122" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="140" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  <rect x="158" y="95" width="14" height="75" fill="#ffffff" stroke="#333" stroke-width="1" rx="2"/>
+  
+  <!-- Black keys (simplified) -->
+  <rect x="61" y="95" width="10" height="50" fill="#000000" rx="2"/>
+  <rect x="79" y="95" width="10" height="50" fill="#000000" rx="2"/>
+  <rect x="115" y="95" width="10" height="50" fill="#000000" rx="2"/>
+  <rect x="133" y="95" width="10" height="50" fill="#000000" rx="2"/>
+  <rect x="151" y="95" width="10" height="50" fill="#000000" rx="2"/>
+</svg>
