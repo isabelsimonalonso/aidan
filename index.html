@@ -826,11 +826,267 @@
         font-size: 0.7rem;
       }
     }
+
+    /* ============ NAVIDAD — se activa por fechas desde el script ============ */
+    :root { --xmas-red: #d32f2f; --xmas-red-dark: #7f0000; --xmas-green: #2e7d32; --xmas-green-dark: #1b5e20; --xmas-warm: #ffe9b8; }
+
+    /* --- nieve --- */
+    .xmas-snow { position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden; display: none; }
+    body.xmas .xmas-snow { display: block; }
+    .xmas-flake {
+      position: absolute; top: -12px; border-radius: 50%; background: #ffffff; opacity: 0;
+      animation: xmas-fall linear infinite; will-change: transform, opacity;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.35);
+    }
+    .xmas-flake.gold { background: var(--accent-light); box-shadow: 0 0 8px rgba(212, 165, 116, 0.45); }
+    @keyframes xmas-fall {
+      0%   { transform: translate3d(0, -12px, 0); opacity: 0; }
+      8%   { opacity: var(--o); }
+      85%  { opacity: var(--o); }
+      100% { transform: translate3d(var(--dx), 105vh, 0); opacity: 0; }
+    }
+
+    /* --- estrellas de fondo --- */
+    .xmas-stars { position: fixed; inset: 0; pointer-events: none; z-index: 0; display: none; }
+    body.xmas .xmas-stars { display: block; }
+    .xmas-star {
+      position: absolute; background: var(--accent-light);
+      clip-path: polygon(50% 0%, 62% 38%, 100% 50%, 62% 62%, 50% 100%, 38% 62%, 0% 50%, 38% 38%);
+      animation: xmas-twinkle-star ease-in-out infinite; animation-duration: var(--t); animation-delay: var(--d);
+      opacity: 0.3;
+    }
+    @keyframes xmas-twinkle-star {
+      0%, 100% { opacity: 0.15; transform: scale(0.7); }
+      50% { opacity: 0.9; transform: scale(1.15); }
+    }
+
+    /* --- siluetas difuminadas de fondo --- */
+    .xmas-bg { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; display: none; }
+    body.xmas .xmas-bg { display: block; }
+    .xmas-bg-item {
+      position: absolute; fill: var(--accent); fill-opacity: 0.16; stroke: var(--accent); stroke-width: 3; stroke-linejoin: round; stroke-linecap: round;
+      opacity: var(--op, 0.16); filter: blur(var(--blur, 1.2px)); animation: xmas-float ease-in-out infinite alternate;
+      animation-duration: var(--t, 10s); animation-delay: var(--d, 0s);
+    }
+    @keyframes xmas-float { from { transform: translateY(0) rotate(var(--r, 0deg)); } to { transform: translateY(-16px) rotate(var(--r, 0deg)); } }
+    .xmas-bg .bg-bell     { left: 3%;  top: 13%;    width: 190px; --r: -12deg; --t: 11s; }
+    .xmas-bg .bg-notes    { left: 21%; top: 9%;     width: 110px; --r: 8deg;   --t: 9s;  --d: -3s; }
+    .xmas-bg .bg-star     { right: 6%; top: 11%;    width: 150px; --r: 10deg;  --t: 13s; --d: -5s; }
+    .xmas-bg .bg-gift     { left: 13%; top: 50%;    width: 115px; --r: -6deg;  --t: 12s; --d: -2s; }
+    .xmas-bg .bg-flake    { right: 9%; top: 42%;    width: 140px; --r: 0deg;   --t: 14s; --d: -7s; }
+    .xmas-bg .bg-tree     { left: 2%;  bottom: 5%;  width: 200px; --r: 0deg;   --t: 10s; --d: -4s; }
+    .xmas-bg .bg-sleigh   { right: 22%; bottom: 6%; width: 300px; --r: 0deg;   --t: 12s; --d: -1s; }
+    .xmas-bg .bg-gift2    { right: 3%; bottom: 9%;  width: 150px; --r: 8deg;   --t: 12s; --d: -1s; }
+    .xmas-bg .bg-bauble   { left: 30%; top: 66%;    width: 110px; --r: 6deg;   --t: 11s; --d: -6s; }
+    @media (max-width: 768px) {
+      .xmas-bg .bg-notes, .xmas-bg .bg-gift, .xmas-bg .bg-flake, .xmas-bg .bg-gift2, .xmas-bg .bg-bauble { display: none; }
+      .xmas-bg .bg-bell { width: 110px; top: 16%; }
+      .xmas-bg .bg-star { width: 90px; top: 18%; }
+      .xmas-bg .bg-tree { width: 120px; }
+      .xmas-bg .bg-sleigh { width: 190px; right: 2%; }
+    }
+
+    /* --- luces de colores en la cabecera --- */
+    .site-header { overflow: visible; }
+    .xmas-lights {
+      position: absolute; left: 0; right: 0; top: 100%; display: none; margin: 0; padding: 0; list-style: none; pointer-events: none;
+    }
+    body.xmas .xmas-lights { display: flex; }
+    .xmas-lights li { flex: 1; position: relative; height: 26px; }
+    .xmas-lights li::before {
+      content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 14px;
+      border-bottom: 1.5px solid rgba(255, 255, 255, 0.28); border-radius: 0 0 50% 50%;
+    }
+    .xmas-lights li::after {
+      content: ""; position: absolute; left: 50%; top: 5px; width: 9px; height: 15px; margin-left: -4.5px;
+      border-radius: 50% 50% 50% 50% / 35% 35% 65% 65%;
+      background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.7) 0, var(--c) 45%);
+      box-shadow: 0 0 10px 2px var(--c);
+      animation: xmas-twinkle-bulb 1.8s ease-in-out infinite; animation-delay: var(--d);
+    }
+    .xmas-lights li:nth-child(4n+1) { --c: var(--accent); --d: 0s; }
+    .xmas-lights li:nth-child(4n+2) { --c: #ffffff; --d: -0.6s; }
+    .xmas-lights li:nth-child(4n+3) { --c: var(--accent-light); --d: -1.2s; }
+    .xmas-lights li:nth-child(4n+4) { --c: #ffffff; --d: -0.3s; }
+    @keyframes xmas-twinkle-bulb {
+      0%, 100% { opacity: 1; box-shadow: 0 0 10px 2px var(--c); }
+      50% { opacity: 0.5; box-shadow: 0 0 3px 0 var(--c); }
+    }
+    @media (max-width: 768px) { .xmas-lights li:nth-child(n+19) { display: none; } }
+
+    /* --- bolas colgando --- */
+    .xmas-baubles { position: absolute; left: 0; right: 0; top: 100%; height: 0; pointer-events: none; display: none; }
+    body.xmas .xmas-baubles { display: block; }
+    .xmas-bauble {
+      position: absolute; left: var(--x); top: 0; width: 30px; margin-left: -15px; transform-origin: 50% 0;
+      animation: xmas-swing 4.5s ease-in-out infinite alternate; animation-delay: var(--d);
+    }
+    .xmas-bauble::before { content: ""; display: block; width: 1px; height: var(--len); margin: 0 auto; background: linear-gradient(rgba(212,165,116,0.15), rgba(212,165,116,0.6)); }
+    .xmas-bauble i {
+      display: block; width: 10px; height: 7px; margin: 0 auto; position: relative;
+      background: linear-gradient(180deg, #f3dcc0, var(--accent) 60%, #8d5a2b); border-radius: 2px 2px 1px 1px;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+    .xmas-bauble i::before { content: ""; position: absolute; left: 50%; top: -5px; width: 5px; height: 5px; margin-left: -3.5px; border: 1px solid var(--accent); border-radius: 50%; }
+    .xmas-bauble::after {
+      content: ""; display: block; width: 30px; height: 30px; border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, rgba(255,255,255,0.95) 0, rgba(255,255,255,0.35) 12%, transparent 30%),
+        linear-gradient(180deg, transparent 42%, var(--band) 43%, var(--band) 46%, transparent 47%, transparent 53%, var(--band) 54%, var(--band) 57%, transparent 58%),
+        radial-gradient(circle at 40% 35%, var(--c1) 0, var(--c2) 70%, var(--c3) 100%);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.65), inset -4px -4px 10px rgba(0, 0, 0, 0.35), 0 0 14px rgba(212, 165, 116, 0.18);
+    }
+    .xmas-bauble.gift i, .xmas-bauble.bell i, .xmas-bauble.star i { display: none; }
+    .xmas-bauble.gift::after, .xmas-bauble.bell::after, .xmas-bauble.star::after {
+      border-radius: 0; box-shadow: none; width: 30px; height: 32px; background: none center / contain no-repeat;
+      filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.6));
+    }
+    .xmas-bauble.gift::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='12' y='44' width='76' height='50' rx='3' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2'/%3E%3Crect x='8' y='30' width='84' height='14' rx='3' fill='%23e8c4a0' stroke='%23d4a574' stroke-width='1.5'/%3E%3Crect x='45' y='30' width='10' height='64' fill='%23d32f2f'/%3E%3Cellipse cx='37' cy='21' rx='12' ry='6.5' transform='rotate(-30 37 21)' fill='%23d32f2f'/%3E%3Cellipse cx='63' cy='21' rx='12' ry='6.5' transform='rotate(30 63 21)' fill='%23d32f2f'/%3E%3C/svg%3E"); }
+    .xmas-bauble.bell::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'%3E%3Cellipse cx='38' cy='11' rx='11' ry='5.5' transform='rotate(-28 38 11)' fill='%23d32f2f'/%3E%3Cellipse cx='62' cy='11' rx='11' ry='5.5' transform='rotate(28 62 11)' fill='%23d32f2f'/%3E%3Ccircle cx='50' cy='12' r='5' fill='%23d32f2f'/%3E%3Cpath d='M50 16 C 33 16, 27 32, 27 54 L 27 66 Q 20 72 18 80 L 82 80 Q 80 72 73 66 L 73 54 C 73 32, 67 16, 50 16 Z' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2'/%3E%3Cpath d='M38 24 C 32 30, 31 42, 31 54' fill='none' stroke='%23fff' stroke-width='3' opacity='.4' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='88' r='8' fill='%238d5a2b' stroke='%23e8c4a0' stroke-width='1.5'/%3E%3C/svg%3E"); width: 28px; }
+    .xmas-bauble.star::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 61,38 97,38 68,59 79,94 50,73 21,94 32,59 3,38 39,38' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2' stroke-linejoin='round'/%3E%3Cpolygon points='50,22 55,38 72,38 58,48 63,64 50,54 37,64 42,48 28,38 45,38' fill='%23e8c4a0' opacity='.45'/%3E%3C/svg%3E"); width: 26px; height: 26px; }
+    @keyframes xmas-swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
+    @media (max-width: 768px) { .xmas-bauble.inner { display: none; } }
+
+    /* --- gorros de Papá Noel --- */
+    .xmas-titled { position: relative; display: inline-block; }
+    .xmas-titled::before {
+      content: ""; position: absolute; left: -0.42em; top: -0.52em; width: 0.95em; height: 0.85em; display: none;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 56'%3E%3Cpath d='M10 44 C 12 22, 30 8, 54 7 C 42 16, 36 28, 35 44 Z' fill='%23d32f2f'/%3E%3Cpath d='M14 42 C 16 26, 28 14, 50 9' fill='none' stroke='%23ff6659' stroke-width='2' opacity='.5'/%3E%3Ccircle cx='55' cy='7' r='6.5' fill='%23fff'/%3E%3Crect x='5' y='40' width='36' height='12' rx='6' fill='%23fff'/%3E%3C/svg%3E") no-repeat center / contain;
+      transform: rotate(-14deg); filter: drop-shadow(0 2px 3px rgba(0,0,0,0.6)); pointer-events: none;
+    }
+    body.xmas .site-name .xmas-titled::before { display: block; }
+    body.xmas .hero-title .xmas-titled::before { display: block; }
+    .site-name .xmas-titled::before { left: -0.5em; top: -0.62em; width: 1.2em; height: 1.05em; }
+
+    /* --- adornos variados en los títulos de sección --- */
+    body.xmas .section-title .xmas-titled::before { display: block; transform: rotate(-8deg); }
+    .section-title .xmas-titled[data-deco="star"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 61,38 97,38 68,59 79,94 50,73 21,94 32,59 3,38 39,38' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2' stroke-linejoin='round'/%3E%3Cpolygon points='50,22 55,38 72,38 58,48 63,64 50,54 37,64 42,48 28,38 45,38' fill='%23e8c4a0' opacity='.45'/%3E%3C/svg%3E"); top: -0.62em; left: -0.5em; }
+    .section-title .xmas-titled[data-deco="bell"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'%3E%3Cellipse cx='38' cy='11' rx='11' ry='5.5' transform='rotate(-28 38 11)' fill='%23d32f2f'/%3E%3Cellipse cx='62' cy='11' rx='11' ry='5.5' transform='rotate(28 62 11)' fill='%23d32f2f'/%3E%3Ccircle cx='50' cy='12' r='5' fill='%23d32f2f'/%3E%3Cpath d='M50 16 C 33 16, 27 32, 27 54 L 27 66 Q 20 72 18 80 L 82 80 Q 80 72 73 66 L 73 54 C 73 32, 67 16, 50 16 Z' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2'/%3E%3Cpath d='M38 24 C 32 30, 31 42, 31 54' fill='none' stroke='%23fff' stroke-width='3' opacity='.4' stroke-linecap='round'/%3E%3Ccircle cx='50' cy='88' r='8' fill='%238d5a2b' stroke='%23e8c4a0' stroke-width='1.5'/%3E%3C/svg%3E");  }
+    .section-title .xmas-titled[data-deco="bauble"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 110'%3E%3Crect x='49' y='0' width='2' height='14' fill='%23e8c4a0'/%3E%3Crect x='42' y='14' width='16' height='10' rx='2' fill='%238d5a2b' stroke='%23e8c4a0' stroke-width='1.5'/%3E%3Ccircle cx='50' cy='66' r='40' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2'/%3E%3Cpath d='M12 58 Q 50 48 88 58 M12 74 Q 50 84 88 74' fill='none' stroke='%23fff' stroke-width='3' opacity='.55'/%3E%3Cellipse cx='36' cy='46' rx='9' ry='6' fill='%23fff' opacity='.55' transform='rotate(-30 36 46)'/%3E%3C/svg%3E"); top: -0.7em; width: 0.8em; height: 0.9em; transform: none; }
+    .section-title .xmas-titled[data-deco="flake"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg fill='none' stroke='%23fff' stroke-width='5' stroke-linecap='round'%3E%3Cpath id='a' d='M50 50 L50 6 M50 16 L42 8 M50 16 L58 8 M50 28 L41 20 M50 28 L59 20 M50 50 L50 94 M50 84 L42 92 M50 84 L58 92 M50 72 L41 80 M50 72 L59 80'/%3E%3Cuse href='%23a' transform='rotate(60 50 50)'/%3E%3Cuse href='%23a' transform='rotate(120 50 50)'/%3E%3C/g%3E%3C/svg%3E"); transform: none; }
+    .section-title .xmas-titled[data-deco="tree"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 120'%3E%3Cpolygon points='50,0 52.5,7 60,7 54,11.5 56.5,19 50,14.5 43.5,19 46,11.5 40,7 47.5,7' fill='%23e8c4a0'/%3E%3Cpath d='M50 12 L 30 44 L 42 44 L 22 72 L 38 72 L 14 102 L 86 102 L 62 72 L 78 72 L 58 44 L 70 44 Z' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2' stroke-linejoin='round'/%3E%3Crect x='44' y='102' width='12' height='14' fill='%238d5a2b'/%3E%3Cg fill='%23d32f2f'%3E%3Ccircle cx='44' cy='40' r='3.5'/%3E%3Ccircle cx='60' cy='62' r='3.5'/%3E%3Ccircle cx='36' cy='68' r='3.5'/%3E%3Ccircle cx='52' cy='88' r='3.5'/%3E%3Ccircle cx='70' cy='94' r='3.5'/%3E%3Ccircle cx='30' cy='94' r='3.5'/%3E%3C/g%3E%3C/svg%3E"); width: 0.8em; height: 0.95em; top: -0.68em; transform: rotate(-6deg); }
+    .section-title .xmas-titled[data-deco="gift"]::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='12' y='44' width='76' height='50' rx='3' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2'/%3E%3Crect x='8' y='30' width='84' height='14' rx='3' fill='%23e8c4a0' stroke='%23d4a574' stroke-width='1.5'/%3E%3Crect x='45' y='30' width='10' height='64' fill='%23d32f2f'/%3E%3Cellipse cx='37' cy='21' rx='12' ry='6.5' transform='rotate(-30 37 21)' fill='%23d32f2f'/%3E%3Cellipse cx='63' cy='21' rx='12' ry='6.5' transform='rotate(30 63 21)' fill='%23d32f2f'/%3E%3C/svg%3E"); transform: rotate(-10deg); }
+
+    /* --- felicitación --- */
+    .xmas-greeting { display: none; align-items: center; justify-content: center; gap: 1.1rem; margin: 0.5rem 0 2.5rem; }
+    body.xmas .xmas-greeting { display: flex; }
+    .xmas-greeting::before, .xmas-greeting::after {
+      content: ""; height: 1px; width: clamp(28px, 9vw, 110px); flex-shrink: 0;
+      background: linear-gradient(90deg, transparent, var(--accent));
+    }
+    .xmas-greeting::after { background: linear-gradient(90deg, var(--accent), transparent); }
+    .xmas-greeting i { font-style: normal; color: var(--accent); font-size: 0.9rem; line-height: 1; flex-shrink: 0; }
+    .xmas-greeting i::before { content: "\2726"; }
+    .xmas-greeting span {
+      font-family: "Playfair Display", Georgia, serif; font-style: italic; font-weight: 700;
+      font-size: clamp(2.1rem, 6.5vw, 3.8rem); line-height: 1.15; letter-spacing: -0.01em; white-space: nowrap;
+      background: linear-gradient(90deg, var(--accent) 0%, #ffffff 28%, var(--accent-light) 50%, #ffffff 72%, var(--accent) 100%);
+      background-size: 250% 100%;
+      -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: var(--accent);
+      animation: xmas-shimmer 9s linear infinite;
+      filter: drop-shadow(0 0 18px rgba(212, 165, 116, 0.35));
+    }
+    @keyframes xmas-shimmer { from { background-position: 0% 50%; } to { background-position: 250% 50%; } }
+    @media (max-width: 480px) { .xmas-greeting::before, .xmas-greeting::after { display: none; } .xmas-greeting span { white-space: normal; } }
+
+    /* --- secciones --- */
+    .xmas-featured { display: none; }
+    body.xmas .xmas-featured { display: block; }
+    .xmas-featured-text { text-align: center; max-width: 620px; margin: 0 auto 2.5rem; }
+    .xmas-featured-video { max-width: 800px; margin: 0 auto; }
+      max-width: 720px; margin: 0 auto; padding: 2.75rem 2rem; text-align: center;
+      border: 1px solid var(--border-light); border-radius: 16px;
+      background: linear-gradient(160deg, rgba(212, 165, 116, 0.08) 0%, rgba(212, 165, 116, 0.02) 60%, transparent 100%);
+      box-shadow: 0 0 50px rgba(212, 165, 116, 0.08);
+      position: relative;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .xmas-snow { display: none !important; }
+      .xmas-flake, .xmas-star, .xmas-lights li::after, .xmas-bauble { animation: none !important; }
+    }
+
   </style>
 </head>
 <body>
+
+  <svg style="display:none" aria-hidden="true">
+    <symbol id="xmasBell" viewBox="0 0 220 200">
+      <g transform="rotate(-18 80 110)">
+        <path d="M80 48 C 56 48, 46 72, 44 108 Q 43 128 32 140 L 128 140 Q 117 128 116 108 C 114 72, 104 48, 80 48 Z"/>
+        <path d="M32 140 L 128 140 L 128 150 L 32 150 Z"/>
+        <circle cx="80" cy="160" r="9"/>
+        <path d="M62 62 C 54 72, 51 88, 50 108" fill="none" stroke-width="2" opacity=".6"/>
+      </g>
+      <g transform="rotate(16 140 110)">
+        <path d="M140 48 C 116 48, 106 72, 104 108 Q 103 128 92 140 L 188 140 Q 177 128 176 108 C 174 72, 164 48, 140 48 Z"/>
+        <path d="M92 140 L 188 140 L 188 150 L 92 150 Z"/>
+        <circle cx="140" cy="160" r="9"/>
+        <path d="M122 62 C 114 72, 111 88, 110 108" fill="none" stroke-width="2" opacity=".6"/>
+      </g>
+      <path d="M110 40 C 92 20, 62 24, 70 44 C 76 58, 100 48, 110 40 Z"/>
+      <path d="M110 40 C 128 20, 158 24, 150 44 C 144 58, 120 48, 110 40 Z"/>
+      <circle cx="110" cy="42" r="7"/>
+      <path d="M104 48 C 96 64, 92 76, 94 92 M116 48 C 124 64, 128 76, 126 92" fill="none"/>
+    </symbol>
+    <symbol id="xmasSleigh" viewBox="0 0 240 160">
+      <path d="M50 118 C 24 118, 20 86, 34 62 C 42 48, 60 50, 58 66 C 57 76, 46 78, 44 70"/>
+      <path d="M50 118 L 170 118 L 170 92 Q 170 82 160 82 L 78 82 Q 60 82 54 100 Z"/>
+      <path d="M170 118 C 200 118, 212 96, 206 78 C 202 66, 186 68, 190 80 C 192 86, 200 86, 200 80" fill="none"/>
+      <path d="M64 82 L 64 60 Q 64 52 72 52 L 100 52 L 100 82" fill="none"/>
+      <path d="M72 60 L 92 60 M72 70 L 92 70" fill="none" stroke-width="2" opacity=".6"/>
+      <path d="M26 142 Q 24 130 38 130 L 190 130 Q 216 130 226 110" fill="none" stroke-width="5" stroke-linecap="round"/>
+      <path d="M66 118 L 66 130 M150 118 L 150 130" fill="none" stroke-width="4"/>
+      <path d="M86 98 Q 120 90 154 98" fill="none" stroke-width="2" opacity=".6"/>
+    </symbol>
+    <symbol id="xmasTree" viewBox="0 0 200 220">
+      <polygon points="100,6 105,20 120,20 108,29 112,43 100,35 88,43 92,29 80,20 95,20"/>
+      <path d="M100 34 L 68 82 L 84 82 L 52 128 L 72 128 L 36 176 L 164 176 L 128 128 L 148 128 L 116 82 L 132 82 Z"/>
+      <rect x="90" y="176" width="20" height="26"/>
+      <path d="M76 100 Q 100 112 124 100 M58 150 Q 100 166 142 150" fill="none" stroke-width="2.5" opacity=".7"/>
+      <g stroke="none"><circle cx="100" cy="72" r="5"/><circle cx="82" cy="118" r="5"/><circle cx="120" cy="122" r="5"/><circle cx="66" cy="162" r="5"/><circle cx="104" cy="156" r="5"/><circle cx="138" cy="164" r="5"/></g>
+    </symbol>
+    <symbol id="xmasStar" viewBox="0 0 200 200">
+      <polygon points="100,8 114,86 192,100 114,114 100,192 86,114 8,100 86,86"/>
+      <polygon points="100,56 108,92 144,100 108,108 100,144 92,108 56,100 92,92" stroke="none" opacity=".5"/>
+      <g stroke="none"><circle cx="40" cy="40" r="4"/><circle cx="164" cy="48" r="3"/><circle cx="156" cy="160" r="4"/><circle cx="36" cy="152" r="3"/></g>
+    </symbol>
+    <symbol id="xmasGift" viewBox="0 0 200 200">
+      <rect x="30" y="92" width="140" height="92" rx="6"/>
+      <rect x="22" y="66" width="156" height="28" rx="5"/>
+      <rect x="88" y="66" width="24" height="118" stroke="none" opacity=".55"/>
+      <path d="M100 66 C 80 60, 48 50, 52 34 C 55 22, 76 26, 100 66 Z"/>
+      <path d="M100 66 C 120 60, 152 50, 148 34 C 145 22, 124 26, 100 66 Z"/>
+      <path d="M100 66 C 88 76, 84 84, 80 92 M100 66 C 112 76, 116 84, 120 92" fill="none"/>
+    </symbol>
+    <symbol id="xmasFlake" viewBox="0 0 200 200">
+      <g fill="none" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <g id="xmasFlakeArm2"><path d="M100 100 L100 10 M100 28 L86 14 M100 28 L114 14 M100 50 L84 36 M100 50 L116 36 M100 70 L90 60 M100 70 L110 60"/></g>
+        <use href="#xmasFlakeArm2" transform="rotate(60 100 100)"/><use href="#xmasFlakeArm2" transform="rotate(120 100 100)"/>
+        <use href="#xmasFlakeArm2" transform="rotate(180 100 100)"/><use href="#xmasFlakeArm2" transform="rotate(240 100 100)"/><use href="#xmasFlakeArm2" transform="rotate(300 100 100)"/>
+        <polygon points="100,86 112,93 112,107 100,114 88,107 88,93"/>
+      </g>
+    </symbol>
+    <symbol id="xmasNotes" viewBox="0 0 200 200">
+      <ellipse cx="52" cy="150" rx="22" ry="15" transform="rotate(-22 52 150)"/>
+      <ellipse cx="132" cy="134" rx="22" ry="15" transform="rotate(-22 132 134)"/>
+      <path d="M70 142 L 70 40 L 150 24 L 150 126" fill="none" stroke-width="6"/>
+      <path d="M70 40 L 150 24 L 150 44 L 70 60 Z" stroke="none"/>
+      <ellipse cx="176" cy="176" rx="13" ry="9" transform="rotate(-22 176 176)"/>
+      <path d="M187 172 L 187 110 C 200 118, 204 132, 192 146" fill="none" stroke-width="4"/>
+    </symbol>
+    <symbol id="xmasBauble" viewBox="0 0 200 220">
+      <path d="M100 4 C 90 4, 90 20, 100 20 C 110 20, 110 4, 100 4" fill="none"/>
+      <rect x="84" y="20" width="32" height="22" rx="4"/>
+      <circle cx="100" cy="128" r="84"/>
+      <path d="M22 110 L 40 96 L 58 110 L 76 96 L 94 110 L 112 96 L 130 110 L 148 96 L 166 110 L 178 100" fill="none" stroke-width="3"/>
+      <path d="M22 146 Q 100 170 178 146" fill="none" stroke-width="3"/>
+      <circle cx="100" cy="128" r="12" stroke="none" opacity=".6"/>
+      <path d="M50 72 C 60 56, 76 48, 92 48" fill="none" stroke-width="5" opacity=".5" stroke-linecap="round"/>
+    </symbol>
+  </svg>
   <header class="site-header">
-    <h1 class="site-name">AIDAN ANTARES</h1>
+    <h1 class="site-name"><span class="xmas-titled">AIDAN ANTARES</span></h1>
     <div style="display: flex; gap: 2rem; align-items: center;">
       <div class="language-selector">
         <button class="lang-btn active" data-lang="es" title="Español">ES</button>
@@ -838,21 +1094,35 @@
       </div>
       <span class="header-tag" data-i18n="header.tag">Pianista & Compositor</span>
     </div>
+
+    <ul class="xmas-lights" id="xmasLights" aria-hidden="true"></ul>
+    <div class="xmas-baubles" id="xmasBaubles" aria-hidden="true"></div>
   </header>
 
   <main>
     <!-- HERO -->
     <section class="hero">
       <div class="hero-content">
+        <div class="xmas-greeting"><i></i><span data-i18n="xmas.greeting">¡Felices Fiestas!</span><i></i></div>
         <h2 class="hero-subtitle" data-i18n="hero.subtitle">Bienvenido a mi universo</h2>
-        <h1 class="hero-title">Aidan Antares</h1>
+        <h1 class="hero-title"><span class="xmas-titled">Aidan Antares</span></h1>
         <a href="https://open.spotify.com/intl-es/artist/1X6UPeirCqrMUtHRQpI2Ha?si=pxLPqLncTTihVF8xL__2Qg" target="_blank" rel="noopener" class="hero-cta" data-i18n="hero.cta">Escúchame en Spotify</a>
+      </div>
+    </section>
+
+
+    <!-- NAVIDAD: composición navideña destacada -->
+    <section class="xmas-featured">
+      <h2 class="section-title"><span class="xmas-titled" data-deco="gift" data-i18n="xmas.featured.title">Composición navideña</span></h2>
+      <p class="content-text xmas-featured-text" data-i18n="xmas.featured.text">Esta Navidad te invito a escuchar “Christmas Antares”, mi composición para estas fechas.</p>
+      <div class="video-embed xmas-featured-video">
+        <iframe src="https://www.youtube.com/embed/J6F1Od6dVOE" title="Aidan Antares - Christmas Antares" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </div>
     </section>
 
     <!-- BIOGRAFÍA -->
     <section class="bio-section">
-      <h2 class="section-title" data-i18n="sections.bio">Biografía</h2>
+      <h2 class="section-title"><span class="xmas-titled" data-deco="bell" data-i18n="sections.bio">Biografía</span></h2>
       <div class="bio-container">
         <div class="bio-image">
           <img src="./portada.jpg" alt="Aidan Antares" />
@@ -867,7 +1137,7 @@
 
     <!-- RECONOCIMIENTOS -->
     <section class="awards-section">
-      <h2 class="section-title" data-i18n="sections.awards">Reconocimientos</h2>
+      <h2 class="section-title"><span class="xmas-titled" data-deco="bauble" data-i18n="sections.awards">Reconocimientos</span></h2>
       <div class="section-content">
         <p class="content-text" data-i18n="content.awards-intro">
           A lo largo de su trayectoria como pianista, ha tenido el honor de recibir reconocimientos que reflejan su dedicación y pasión por la música. Estos logros lo motivan a seguir creciendo y compartiendo su amor por el piano.
@@ -881,7 +1151,7 @@
 
     <!-- ÚLTIMAS ACTUACIONES -->
     <section class="videos-section">
-      <h2 class="section-title" data-i18n="sections.performances">Últimas Actuaciones</h2>
+      <h2 class="section-title"><span class="xmas-titled" data-deco="flake" data-i18n="sections.performances">Últimas Actuaciones</span></h2>
       <div class="videos">
         <div class="video-embed">
           <iframe src="https://www.youtube.com/embed/6t_-2oq75Fo" title="Aidan Antares - Concurso La Villajoyosa" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -912,7 +1182,7 @@
 
     <!-- ENTREVISTAS -->
     <section class="videos-section">
-      <h2 class="section-title" data-i18n="sections.interviews">Entrevistas</h2>
+      <h2 class="section-title"><span class="xmas-titled" data-deco="tree" data-i18n="sections.interviews">Entrevistas</span></h2>
       <div class="videos interviews-videos">
         <div class="video-embed">
           <iframe src="https://www.youtube.com/embed/lKfaFSki-1o" title="Entrevista a Aidan Antares en Cope Radio Sirena" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -922,7 +1192,7 @@
 
     <!-- CONECTAR -->
     <section class="icons-section">
-      <h2 class="section-title" data-i18n="sections.connect">Conecta Conmigo</h2>
+      <h2 class="section-title"><span class="xmas-titled" data-deco="star" data-i18n="sections.connect">Conecta Conmigo</span></h2>
       <div class="all-icons">
         <a class="social-link" href="https://www.instagram.com/aidanantaresoficial/" target="_blank" rel="noopener" aria-label="Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -961,6 +1231,20 @@
     </section>
   </main>
 
+  <div class="xmas-bg" aria-hidden="true">
+    <svg class="xmas-bg-item bg-bell"><use href="#xmasBell"/></svg>
+    <svg class="xmas-bg-item bg-notes"><use href="#xmasNotes"/></svg>
+    <svg class="xmas-bg-item bg-star"><use href="#xmasStar"/></svg>
+    <svg class="xmas-bg-item bg-gift"><use href="#xmasGift"/></svg>
+    <svg class="xmas-bg-item bg-flake"><use href="#xmasFlake"/></svg>
+    <svg class="xmas-bg-item bg-tree"><use href="#xmasTree"/></svg>
+    <svg class="xmas-bg-item bg-sleigh"><use href="#xmasSleigh"/></svg>
+    <svg class="xmas-bg-item bg-gift2"><use href="#xmasGift"/></svg>
+    <svg class="xmas-bg-item bg-bauble"><use href="#xmasBauble"/></svg>
+  </div>
+  <div class="xmas-snow" id="xmasSnow" aria-hidden="true"></div>
+
+
   <footer>
     <div style="margin-bottom: 1rem; display: none;" class="footer-lang-selector">
       <button class="lang-btn footer-text-btn active" data-lang="es" title="Español">ES</button>
@@ -988,7 +1272,10 @@
         "content.awards-intro": "A lo largo de su trayectoria como pianista, ha tenido el honor de recibir reconocimientos que reflejan su dedicación y pasión por la música. Estos logros lo motivan a seguir creciendo y compartiendo su amor por el piano.",
         "content.award-1": "Mención de honor en el Conservatorio de Benidorm (11 de junio de 2026)",
         "content.award-2": "Segundo premio en la Categoría B del Concurso de Piano Casademusica en La Vila Joiosa (28 de junio de 2026)",
-        "footer.rights": "Todos los derechos reservados"
+        "footer.rights": "Todos los derechos reservados",
+        "xmas.greeting": "¡Felices Fiestas!",
+        "xmas.featured.title": "Composición navideña",
+        "xmas.featured.text": "Esta Navidad te invito a escuchar “Christmas Antares”, mi composición para estas fechas."
       },
       en: {
         "header.tag": "Pianist & Composer",
@@ -1006,7 +1293,10 @@
         "content.awards-intro": "Throughout his career as a pianist, he has had the honor of receiving recognition that reflects his dedication and passion for music. These achievements motivate him to continue growing and sharing his love for the piano.",
         "content.award-1": "Honor Mention at the Benidorm Conservatory (June 11, 2026)",
         "content.award-2": "Second Prize in Category B of the Casademusica Piano Competition in La Vila Joiosa (June 28, 2026)",
-        "footer.rights": "All rights reserved"
+        "footer.rights": "All rights reserved",
+        "xmas.greeting": "Happy Holidays!",
+        "xmas.featured.title": "Christmas Composition",
+        "xmas.featured.text": "This Christmas I invite you to listen to “Christmas Antares”, my composition for the season."
       }
     };
 
@@ -1038,6 +1328,66 @@
     const savedLanguage = localStorage.getItem("language") || "es";
     setLanguage(savedLanguage);
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // ============ NAVIDAD ============
+    // Los adornos se muestran solo entre estas dos fechas (la segunda, incluida).
+    const XMAS_START = new Date(2026, 10, 17); // 17 de noviembre de 2026
+    const XMAS_END = new Date(2027, 0, 7);     // 7 de enero de 2027
+    (function () {
+      const now = new Date();
+      const end = new Date(XMAS_END.getFullYear(), XMAS_END.getMonth(), XMAS_END.getDate() + 1);
+      if (now < XMAS_START || now >= end) return;
+      document.body.classList.add("xmas");
+
+      // nieve
+      const snow = document.getElementById("xmasSnow");
+      for (let i = 0; i < 60; i++) {
+        const f = document.createElement("span");
+        const size = 2 + Math.random() * 3.5;
+        f.className = "xmas-flake" + (Math.random() < 0.35 ? " gold" : "");
+        f.style.left = (Math.random() * 100) + "%";
+        f.style.width = f.style.height = size.toFixed(1) + "px";
+        f.style.setProperty("--o", (0.25 + Math.random() * 0.5).toFixed(2));
+        f.style.setProperty("--dx", ((Math.random() - 0.5) * 120).toFixed(0) + "px");
+        f.style.animationDuration = (12 + Math.random() * 14).toFixed(1) + "s";
+        f.style.animationDelay = (-Math.random() * 26).toFixed(1) + "s";
+        snow.appendChild(f);
+      }
+
+      // luces
+      const lights = document.getElementById("xmasLights");
+      for (let i = 0; i < 36; i++) lights.appendChild(document.createElement("li"));
+
+      // bolas
+      const baubles = document.getElementById("xmasBaubles");
+      const palette = [
+        // dorado, champán, blanco perla, negro con banda dorada
+        { c1: "#f0cfa6", c2: "#d4a574", c3: "#6e4420", band: "rgba(255,255,255,0.45)" },
+        { c1: "#fff1dd", c2: "#e8c4a0", c3: "#8d5a2b", band: "rgba(212,165,116,0.6)" },
+        { c1: "#ffffff", c2: "#e9e9e9", c3: "#7a7a7a", band: "rgba(212,165,116,0.75)" },
+        { c1: "#4a4a4a", c2: "#1a1a1a", c3: "#000000", band: "rgba(232,196,160,0.9)" }
+      ];
+      const spots = [
+        { x: 4, len: 22 }, { x: 9, len: 40, t: "gift" }, { x: 15, len: 14 }, { x: 21, len: 30, t: "bell", inner: true },
+        { x: 28, len: 12, t: "gift", inner: true }, { x: 35, len: 34, inner: true },
+        { x: 65, len: 16, t: "star", inner: true }, { x: 72, len: 36, inner: true }, { x: 79, len: 12, t: "gift", inner: true },
+        { x: 85, len: 28, t: "bell" }, { x: 91, len: 42 }, { x: 96, len: 18, t: "gift" }
+      ];
+      spots.forEach((p, i) => {
+        const b = document.createElement("span");
+        const c = palette[i % palette.length];
+        b.className = "xmas-bauble" + (p.t ? " " + p.t : "") + (p.inner ? " inner" : "");
+        b.style.setProperty("--x", p.x + "%");
+        b.style.setProperty("--len", p.len + "px");
+        b.style.setProperty("--c1", c.c1);
+        b.style.setProperty("--c2", c.c2);
+        b.style.setProperty("--c3", c.c3);
+        b.style.setProperty("--band", c.band);
+        b.style.setProperty("--d", (-Math.random() * 4.5).toFixed(1) + "s");
+        b.appendChild(document.createElement("i"));
+        baubles.appendChild(b);
+      });
+    })();
   </script>
 </body>
 </html>
