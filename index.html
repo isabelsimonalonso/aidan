@@ -960,6 +960,17 @@
     body.xmas .site-name .xmas-titled::before { display: block; }
     body.xmas .hero-title .xmas-titled::before { display: block; }
     .site-name .xmas-titled::before { left: -0.5em; top: -0.62em; width: 1.2em; height: 1.05em; }
+    /* el degradado va en el propio span: en móviles (Safari/Chrome) el texto de un hijo
+       inline-block no se pinta con el background-clip del padre y el nombre desaparecía */
+    .site-name { white-space: nowrap; flex-shrink: 0; }
+    .site-name .xmas-titled {
+      background: linear-gradient(135deg, var(--text) 0%, var(--accent) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .site-header { gap: 1rem; }
+    .header-tag { text-align: right; }
 
     /* --- adornos variados en los títulos de sección --- */
     body.xmas .section-title .xmas-titled::before { display: block; transform: rotate(-8deg); }
