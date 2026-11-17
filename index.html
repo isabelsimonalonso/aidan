@@ -946,6 +946,9 @@
     .xmas-bauble.star::after { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 61,38 97,38 68,59 79,94 50,73 21,94 32,59 3,38 39,38' fill='%23d4a574' stroke='%23e8c4a0' stroke-width='2' stroke-linejoin='round'/%3E%3Cpolygon points='50,22 55,38 72,38 58,48 63,64 50,54 37,64 42,48 28,38 45,38' fill='%23e8c4a0' opacity='.45'/%3E%3C/svg%3E"); width: 26px; height: 26px; }
     @keyframes xmas-swing { from { transform: rotate(-5deg); } to { transform: rotate(5deg); } }
     @media (max-width: 768px) { .xmas-bauble.inner { display: none; } }
+    /* con adornos colgando, el contenido empieza más abajo para que no tapen la felicitación */
+    body.xmas main { padding-top: 10.5rem; }
+    @media (max-width: 768px) { body.xmas main { padding-top: 10rem; } }
 
     /* --- gorros de Papá Noel --- */
     .xmas-titled { position: relative; display: inline-block; }
